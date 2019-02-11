@@ -1,0 +1,7 @@
+[package]
+name = "zig_zag_conversion_6"
+version = "0.1.0"
+authors = ["Yu Huang <diwang90@gmail.com>"]
+edition = "2018"
+
+[dependencies]
