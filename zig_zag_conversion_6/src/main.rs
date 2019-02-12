@@ -2,7 +2,7 @@ use std::str::from_utf8;
 
 fn main() {
     println!("Hello, world!");
-    Solution::convert("PAYPALISHIRING".to_string(), 3);
+    Solution::convert("ABCDE".to_string(), 4);
 }
 
 struct Solution;
@@ -10,6 +10,9 @@ struct Solution;
 impl Solution {
     pub fn convert(s: String, num_rows: i32) -> String {
         let num_rows = num_rows as usize;
+        if num_rows == 1 || s.len() <= num_rows {
+            return s;
+        }
         let iters = s.len()/(2*(num_rows as usize-1));
         let s_bytes = s.as_bytes();
         let mut result: Vec<u8> = Vec::new();
@@ -20,7 +23,7 @@ impl Solution {
                 offset = k*regular_int;
                 result.push(s_bytes[r+offset]);
                 if r != 0 && r != num_rows - 1 {
-                    result.push(s_bytes[r+offset+regular_int-r]);
+                    result.push(s_bytes[offset+regular_int-r]);
                 }
             }
             // deal with last iter
@@ -28,8 +31,9 @@ impl Solution {
             if r+offset < s.len() {
                 result.push(s_bytes[r+offset]);
             }
-            let zag = r+offset+regular_int-r+1;
-            if zag < s.len() {
+            let zag = offset+regular_int-r;
+            if (r != 0 && r != num_rows - 1) &&
+            zag < s.len() {
                 result.push(s_bytes[zag]);
             }
         }
@@ -46,6 +50,14 @@ mod test {
         assert_eq!(
             Solution::convert("PAYPALISHIRING".to_string(), 3),
             "PAHNAPLSIIGYIR".to_string()
+        );
+    }
+
+    #[test]
+    fn test2() {
+        assert_eq!(
+            Solution::convert("ABC".to_string(), 1),
+            "ABC".to_string()
         );
     }
 }

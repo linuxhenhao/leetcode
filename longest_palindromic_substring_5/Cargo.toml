@@ -1,0 +1,7 @@
+[package]
+name = "longest_palindromic_substring_5"
+version = "0.1.0"
+authors = ["Yu Huang <diwang90@gmail.com>"]
+edition = "2018"
+
+[dependencies]
