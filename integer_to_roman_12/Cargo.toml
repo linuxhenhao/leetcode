@@ -1,0 +1,9 @@
+[package]
+name = "integer_to_roman_12"
+version = "0.1.0"
+authors = ["huangyu"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
